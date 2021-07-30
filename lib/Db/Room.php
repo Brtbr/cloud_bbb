@@ -43,7 +43,7 @@ use OCP\AppFramework\Db\Entity;
  * @method void setMediaCheck(bool $mediaCheck)
  * @method void setCleanLayout(bool $cleanLayout)
  * @method void setJoinMuted(bool $joinMuted)
- * @method void setRoomType(bool $roomType)
+ * @method void setRoomType(string $roomType)
  */
 class Room extends Entity implements JsonSerializable {
 	public const ACCESS_PUBLIC = 'public';
@@ -72,7 +72,7 @@ class Room extends Entity implements JsonSerializable {
 	public $mediaCheck;
 	public $cleanLayout;
 	public $joinMuted;
-	public $roomType
+	public $roomType;
 
 	public function __construct() {
 		$this->addType('maxParticipants', 'integer');
