@@ -23,8 +23,8 @@ class HookController extends Controller {
 	/** @var IEventDispatcher */
 	private $eventDispatcher;
 
-	/** @var RoomService */
-	private $roomService;
+	/** @var IActivityManager */
+	private $activityManager;
 
 	public function __construct(
 		string $appName,
@@ -63,8 +63,15 @@ class HookController extends Controller {
 		$this->eventDispatcher->dispatch(MeetingEndedEvent::class, new MeetingEndedEvent($room, $recordingmarks));
 
 		
-		if($room->getRoomType === 'single_use') {
-			$this->roomService->delete($room->getId());
+		if($room->getRoomType() === 'single_use') {
+			$this->service->delete($room->getId());
+			$activityEvent = $this->activityManager->generateEvent();
+			$activityEvent->setApp(Application::ID);
+			$activityEvent->setType(Setting::Identifier);
+			$activityEvent->setAffectedUser($room->getUserId());
+			$activityEvent->setSubject("Test", $room->id);
+			$this->activityManager->publish($activityEvent);
+
 		}
 
 	}
