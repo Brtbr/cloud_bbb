@@ -23,6 +23,9 @@ class HookController extends Controller {
 	/** @var IEventDispatcher */
 	private $eventDispatcher;
 
+	/** @var RoomService */
+	private $roomService;
+
 	public function __construct(
 		string $appName,
 		IRequest $request,
@@ -56,7 +59,14 @@ class HookController extends Controller {
 	public function meetingEnded($recordingmarks = false): void {
 		$recordingmarks = \boolval($recordingmarks);
 
-		$this->eventDispatcher->dispatch(MeetingEndedEvent::class, new MeetingEndedEvent($this->getRoom(), $recordingmarks));
+		$room = $this->getRoom();
+		$this->eventDispatcher->dispatch(MeetingEndedEvent::class, new MeetingEndedEvent($room, $recordingmarks));
+
+		
+		if($room->getRoomType === 'single_use') {
+			$this->roomService->delete($room->getId());
+		}
+
 	}
 
 	/**

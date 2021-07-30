@@ -18,25 +18,25 @@ class Version000000Date20210730150741 extends SimpleMigrationStep {
 	 * @param IOutput $output
 	 * @param Closure $schemaClosure The `\Closure` returns a `ISchemaWrapper`
 	 * @param array $options
-	 */
-	public function preSchemaChange(IOutput $output, Closure $schemaClosure, array $options): void {
-	}
-
-	/**
-	 * @param IOutput $output
-	 * @param Closure $schemaClosure The `\Closure` returns a `ISchemaWrapper`
-	 * @param array $options
 	 * @return null|ISchemaWrapper
 	 */
 	public function changeSchema(IOutput $output, Closure $schemaClosure, array $options): ?ISchemaWrapper {
-		return null;
-	}
+		$schema = $schemaClosure();
 
-	/**
-	 * @param IOutput $output
-	 * @param Closure $schemaClosure The `\Closure` returns a `ISchemaWrapper`
-	 * @param array $options
-	 */
-	public function postSchemaChange(IOutput $output, Closure $schemaClosure, array $options): void {
+		if ($schema->hasTable('bbb_rooms')) {
+			$table = $schema->getTable('bbb_rooms');
+
+			if (!$table->hasColumn('room_type')) {
+				$table->addColumn('room_type', 'string', [
+					'notnull' => false,
+					'length' => 64,
+					'default' => 'persistant'
+				]);
+			}
+		
+			return $schema;
+		}
+
+		return null;
 	}
 }

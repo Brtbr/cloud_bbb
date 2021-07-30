@@ -43,6 +43,7 @@ export interface Room {
 	mediaCheck: boolean,
 	cleanLayout: boolean,
 	joinMuted: boolean,
+	roomType: string,
 }
 
 export interface RoomShare {
