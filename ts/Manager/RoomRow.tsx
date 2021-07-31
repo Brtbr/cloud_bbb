@@ -9,7 +9,7 @@ import { AccessOptions } from '../Common/Translation';
 type Props = {
 	room: Room;
 	restriction?: Restriction;
-	roomType: RoomType;
+	roomType: string;
 	updateRoom: (room: Room) => Promise<void>;
 	deleteRoom: (id: number) => void;
 }
