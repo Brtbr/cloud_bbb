@@ -30,7 +30,7 @@ const NewRoomForm: React.FC<Props> = (props) => {
 		setProcessing(true);
 		setError('');
 
-		props.addRoom(name).then(() => {
+		props.addSingleUseRoom(name).then(() => {
 			setName('');
 		}).catch(err => {
 			setError(err.toString());
