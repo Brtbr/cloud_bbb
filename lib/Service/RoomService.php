@@ -95,6 +95,10 @@ class RoomService {
 			$room->setPassword($this->humanReadableRandom(8));
 		}
 
+		if ($roomLife === 'single_use') {
+			$room->setRequireModerator(true);
+		}
+
 		$createdRoom = $this->mapper->insert($room);
 
 		$this->eventDispatcher->dispatch(RoomCreatedEvent::class, new RoomCreatedEvent($createdRoom));
