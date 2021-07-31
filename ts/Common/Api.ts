@@ -16,7 +16,7 @@ export enum Access {
 	InternalRestricted = 'internal_restricted',
 }
 
-export enum RoomType {
+export enum RoomLife {
 	Persistent = 'persistent',
 	SingleUse = 'single_use',
 }
@@ -48,7 +48,7 @@ export interface Room {
 	mediaCheck: boolean,
 	cleanLayout: boolean,
 	joinMuted: boolean,
-	roomType: string,
+	roomLife: string,
 }
 
 export interface RoomShare {
@@ -156,14 +156,14 @@ class Api {
 		return response.data;
 	}
 
-	public async createRoom(name: string, access: Access = Access.Public, maxParticipants = 0, roomType: RoomType = RoomType.Persistent) {
+	public async createRoom(name: string, access: Access = Access.Public, maxParticipants = 0, roomLife: RoomLife = RoomLife.Persistent) {
 		const response = await axios.post(this.getUrl('rooms'), {
 			name,
 			welcome: '',
 			maxParticipants,
 			record: false,
 			access,
-			roomType,
+			roomLife,
 		});
 
 		return response.data;

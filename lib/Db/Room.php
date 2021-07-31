@@ -43,7 +43,7 @@ use OCP\AppFramework\Db\Entity;
  * @method void setMediaCheck(bool $mediaCheck)
  * @method void setCleanLayout(bool $cleanLayout)
  * @method void setJoinMuted(bool $joinMuted)
- * @method void setRoomType(string $roomType)
+ * @method void setRoomType(string $roomLife)
  */
 class Room extends Entity implements JsonSerializable {
 	public const ACCESS_PUBLIC = 'public';
@@ -72,7 +72,7 @@ class Room extends Entity implements JsonSerializable {
 	public $mediaCheck;
 	public $cleanLayout;
 	public $joinMuted;
-	public $roomType;
+	public $roomLife;
 
 	public function __construct() {
 		$this->addType('maxParticipants', 'integer');
@@ -84,7 +84,7 @@ class Room extends Entity implements JsonSerializable {
 		$this->addType('mediaCheck', 'boolean');
 		$this->addType('cleanLayout', 'boolean');
 		$this->addType('joinMuted', 'boolean');
-		$this->addType('roomType', 'string');
+		$this->addType('roomLife', 'string');
 	}
 
 	public function jsonSerialize(): array {
@@ -106,7 +106,7 @@ class Room extends Entity implements JsonSerializable {
 			'mediaCheck' => boolval($this->mediaCheck),
 			'cleanLayout' => boolval($this->cleanLayout),
 			'joinMuted' => boolval($this->joinMuted),
-			'roomType' => $this->roomType,
+			'roomLife' => $this->roomLife,
 		];
 	}
 }
