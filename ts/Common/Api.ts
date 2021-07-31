@@ -16,6 +16,11 @@ export enum Access {
 	InternalRestricted = 'internal_restricted',
 }
 
+export enum RoomType {
+	Persistent = 'persistent',
+	SingleUse = 'single_use',
+}
+
 export interface Restriction {
 	id: number;
 	groupId: string;
@@ -151,13 +156,14 @@ class Api {
 		return response.data;
 	}
 
-	public async createRoom(name: string, access: Access = Access.Public, maxParticipants = 0) {
+	public async createRoom(name: string, access: Access = Access.Public, maxParticipants = 0, roomType: RoomType = RoomType.Persistent) {
 		const response = await axios.post(this.getUrl('rooms'), {
 			name,
 			welcome: '',
 			maxParticipants,
 			record: false,
 			access,
+			roomType,
 		});
 
 		return response.data;

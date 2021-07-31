@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.scss';
 import RoomRow from './RoomRow';
 import { SortArrow } from './SortArrow';
-import { api, Room, Restriction, Access } from '../Common/Api';
+import { api, Room, Restriction, Access, RoomType } from '../Common/Api';
 import NewRoomForm from './NewRoomForm';
 
 export type SortKey = 'name' | 'welcome' | 'maxParticipants' | 'record' | 'access';
@@ -90,6 +90,7 @@ const App: React.FC<Props> = () => {
 		}
 
 		let access = Access.Public;
+		let roomType = RoomType.Persistent;
 
 		const disabledRoomTypes = restriction?.roomTypes || [];
 		if (disabledRoomTypes.length > 0 && disabledRoomTypes.indexOf(access) > -1) {
@@ -98,7 +99,7 @@ const App: React.FC<Props> = () => {
 
 		const maxParticipants = restriction?.maxParticipants || 0;
 
-		return api.createRoom(name, access, maxParticipants).then(room => {
+		return api.createRoom(name, access, maxParticipants, roomType).then(room => {
 			setRooms(rooms.concat([room]));
 		});
 	}
