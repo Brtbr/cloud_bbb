@@ -50,9 +50,11 @@ const NewRoomForm: React.FC<Props> = (props) => {
 				placeholder={t('bbb', 'Room name')}
 				onChange={(event) => { setName(event.target.value); }} />
 
-			<button onClick={addRoom} value={t('bbb', 'Create')} />
-			<button onClick={addSingleUseRoom}>
+			<button onClick={addRoom}>
 				{t('bbb', 'Create')}
+			</button>
+			<button onClick={addSingleUseRoom}>
+				{t('bbb', 'Create single use room')}	
 			</button>
 
 			{error && <p>{error}</p>}
