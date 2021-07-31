@@ -28,7 +28,6 @@ const LOGO_QR = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABze
 type Props = {
 	room: Room;
 	restriction?: Restriction;
-	roomLife: string;
 	updateProperty: (key: string, value: string | boolean | number | null) => Promise<void>;
 	open: boolean;
 	setOpen: (open: boolean) => void;
@@ -166,7 +165,7 @@ const EditRoomDialog: React.FC<Props> = ({ room, restriction, updateProperty, op
 							type="checkbox"
 							className="checkbox"
 							checked={room.record}
-							disabled={!restriction?.allowRecording || roomLife === RoomLife.SingleUse}
+							disabled={!restriction?.allowRecording}
 							onChange={(event) => updateProperty('record', event.target.checked)} />
 						<label htmlFor={`bbb-record-${room.id}`}>{t('bbb', 'Recording')}</label>
 					</div>
