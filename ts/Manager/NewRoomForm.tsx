@@ -24,6 +24,21 @@ const NewRoomForm: React.FC<Props> = (props) => {
 		});
 	}
 
+	function addSingleUseRoom(ev: React.FormEvent) {
+		ev.preventDefault();
+
+		setProcessing(true);
+		setError('');
+
+		props.addRoom(name).then(() => {
+			setName('');
+		}).catch(err => {
+			setError(err.toString());
+		}).then(() => {
+			setProcessing(false);
+		});
+	}
+
 	return (
 		<form action="#" >
 			<input
@@ -34,7 +49,10 @@ const NewRoomForm: React.FC<Props> = (props) => {
 				onChange={(event) => { setName(event.target.value); }} />
 
 			<button onClick={addRoom}>
-				t('bbb', 'Create')
+				Create
+			</button>
+			<button onClick={addSingleUseRoom}>
+				Create single use room
 			</button>
 
 			{error && <p>{error}</p>}
