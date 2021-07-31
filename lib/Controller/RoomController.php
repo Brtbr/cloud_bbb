@@ -121,7 +121,8 @@ class RoomController extends Controller {
 		bool $listenOnly,
 		bool $mediaCheck,
 		bool $cleanLayout,
-		bool $joinMuted
+		bool $joinMuted,
+		string $roomType
 	): DataResponse {
 		$room = $this->service->find($id);
 
@@ -144,8 +145,8 @@ class RoomController extends Controller {
 			return new DataResponse(['message' => 'Access type not allowed.'], Http::STATUS_BAD_REQUEST);
 		}
 
-		return $this->handleNotFound(function () use ($id, $name, $welcome, $maxParticipants, $record, $access, $everyoneIsModerator, $requireModerator, $moderatorToken, $listenOnly, $mediaCheck, $cleanLayout, $joinMuted) {
-			return $this->service->update($id, $name, $welcome, $maxParticipants, $record, $access, $everyoneIsModerator, $requireModerator, $moderatorToken, $listenOnly, $mediaCheck, $cleanLayout, $joinMuted);
+		return $this->handleNotFound(function () use ($id, $name, $welcome, $maxParticipants, $record, $access, $everyoneIsModerator, $requireModerator, $moderatorToken, $listenOnly, $mediaCheck, $cleanLayout, $joinMuted, $roomType) {
+			return $this->service->update($id, $name, $welcome, $maxParticipants, $record, $access, $everyoneIsModerator, $requireModerator, $moderatorToken, $listenOnly, $mediaCheck, $cleanLayout, $joinMuted, $roomType);
 		});
 	}
 
