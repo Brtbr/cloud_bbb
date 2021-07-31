@@ -89,7 +89,7 @@ class RoomService {
 		$room->setMediaCheck(true);
 		$room->setCleanLayout(false);
 		$room->setJoinMuted(false);
-		$room->setRoomType($roomLife);
+		$room->setRoomLife($roomLife);
 
 		if ($access === Room::ACCESS_PASSWORD) {
 			$room->setPassword($this->humanReadableRandom(8));
@@ -144,7 +144,7 @@ class RoomService {
 			$room->setMediaCheck($mediaCheck);
 			$room->setCleanLayout($cleanLayout);
 			$room->setJoinMuted($joinMuted);
-			$room->setRoomType($roomLife);
+			$room->setRoomLife($roomLife);
 
 			return $this->mapper->update($room);
 		} catch (Exception $e) {

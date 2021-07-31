@@ -25,7 +25,7 @@ use OCP\AppFramework\Db\Entity;
  * @method bool getMediaCheck()
  * @method bool getCleanLayout()
  * @method bool getJoinMuted()
- * @method bool getRoomType()
+ * @method bool getRoomLife()
  * @method void setUid(string $uid)
  * @method void setName(string $name)
  * @method void setAttendeePassword(string $pw)
@@ -43,7 +43,7 @@ use OCP\AppFramework\Db\Entity;
  * @method void setMediaCheck(bool $mediaCheck)
  * @method void setCleanLayout(bool $cleanLayout)
  * @method void setJoinMuted(bool $joinMuted)
- * @method void setRoomType(string $roomLife)
+ * @method void setRoomLife(string $roomLife)
  */
 class Room extends Entity implements JsonSerializable {
 	public const ACCESS_PUBLIC = 'public';
