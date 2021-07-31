@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 type Props = {
 	addRoom: (name: string) => Promise<void>;
+	addSingleUseRoom: (name: string) => Promise<void>;
 }
 
 const NewRoomForm: React.FC<Props> = (props) => {
