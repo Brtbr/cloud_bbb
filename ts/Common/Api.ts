@@ -163,7 +163,7 @@ class Api {
 			maxParticipants,
 			record: false,
 			access,
-			roomType: 'persistent',
+			roomType,
 		});
 
 		return response.data;
