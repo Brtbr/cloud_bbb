@@ -25,7 +25,7 @@ const NewRoomForm: React.FC<Props> = (props) => {
 	}
 
 	return (
-		<form action="#" onSubmit={addRoom}>
+		<form action="#" >
 			<input
 				className="newgroup-name"
 				disabled={processing}
@@ -33,10 +33,13 @@ const NewRoomForm: React.FC<Props> = (props) => {
 				placeholder={t('bbb', 'Room name')}
 				onChange={(event) => { setName(event.target.value); }} />
 
-			<input type="submit" disabled={processing} value={t('bbb', 'Create')} />
+			<button onClick={addRoom}>
+				t('bbb', 'Create')
+			</button>
 
 			{error && <p>{error}</p>}
 		</form>
+		
 	);
 };
 
