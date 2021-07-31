@@ -104,6 +104,26 @@ const App: React.FC<Props> = () => {
 		});
 	}
 
+	function addSingleUseRoom(name: string) {
+		if (!name) {
+			return Promise.resolve();
+		}
+
+		let access = Access.Public;
+		let roomType = RoomType.SingleUse;
+
+		const disabledRoomTypes = restriction?.roomTypes || [];
+		if (disabledRoomTypes.length > 0 && disabledRoomTypes.indexOf(access) > -1) {
+			access = Object.values(Access).filter(a => disabledRoomTypes.indexOf(a) < 0)[0] as Access;
+		}
+
+		const maxParticipants = restriction?.maxParticipants || 0;
+
+		return api.createRoom(RoomType.Persistent, access, maxParticipants, roomType).then(room => {
+			setRooms(rooms.concat([room]));
+		});
+	}
+
 	function updateRoom(room: Room) {
 		return api.updateRoom(room).then(updatedRoom => {
 			setRooms(rooms.map(room => {
@@ -165,7 +185,7 @@ const App: React.FC<Props> = () => {
 						</td>
 						<td>
 							{(maxRooms > rows.length || maxRooms < 0) ?
-								<NewRoomForm addRoom={addRoom} addSingleUseRoom={addRoom} /> :
+								<NewRoomForm addRoom={addRoom} addSingleUseRoom={addSingleUseRoom} /> :
 								<p className="text-muted">{maxRooms === 0 ?
 									t('bbb', 'You are not permitted to create a room.') :
 									t('bbb', 'You exceeded the maximum number of rooms.')
