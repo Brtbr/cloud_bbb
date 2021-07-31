@@ -119,7 +119,7 @@ const App: React.FC<Props> = () => {
 
 		const maxParticipants = restriction?.maxParticipants || 0;
 
-		return api.createRoom(RoomType.Persistent, access, maxParticipants, roomType).then(room => {
+		return api.createRoom(name, access, maxParticipants, roomType).then(room => {
 			setRooms(rooms.concat([room]));
 		});
 	}
