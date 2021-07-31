@@ -27,7 +27,7 @@ class Version000000Date20210730150741 extends SimpleMigrationStep {
 			$table = $schema->getTable('bbb_rooms');
 
 			if($table-> hasColumn('room_type')) {
-				$table->dropColumn('room_type')
+				$table->dropColumn('room_type');
 			}
 
 			if (!$table->hasColumn('room_life')) {
