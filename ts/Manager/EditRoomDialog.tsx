@@ -165,7 +165,7 @@ const EditRoomDialog: React.FC<Props> = ({ room, restriction, updateProperty, op
 							type="checkbox"
 							className="checkbox"
 							checked={room.record}
-							disabled={!restriction?.allowRecording}
+							disabled={!restriction?.allowRecording || room.roomLife === RoomLife.SingleUse}
 							onChange={(event) => updateProperty('record', event.target.checked)} />
 						<label htmlFor={`bbb-record-${room.id}`}>{t('bbb', 'Recording')}</label>
 					</div>
@@ -177,7 +177,8 @@ const EditRoomDialog: React.FC<Props> = ({ room, restriction, updateProperty, op
 							type="checkbox"
 							className="checkbox"
 							checked={room.requireModerator}
-							onChange={(event) => updateProperty('requireModerator', event.target.checked)} />
+							onChange={(event) => updateProperty('requireModerator', event.target.checked)} 
+							disabled={room.roomLife === RoomLife.SingleUse} />
 						<label htmlFor={`bbb-requireModerator-${room.id}`}>{t('bbb', 'Require moderator to start room')}</label>
 					</div>
 					<p><em>{descriptions.requireModerator}</em></p>
