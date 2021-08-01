@@ -19,7 +19,7 @@ type RecordingsNumberProps = {
 	setShowRecordings: (showRecordings: boolean) => void;
 }
 
-const RecordingsNumber: React.FC<RecordingsNumberProps> = ({ recordings, showRecordings, setShowRecordings, room }) => {
+const RecordingsNumber: React.FC<RecordingsNumberProps> = ({ recordings, showRecordings, setShowRecordings }) => {
 	if (recordings === null) {
 		return <span className="icon icon-loading-small icon-visible"></span>;
 	}
