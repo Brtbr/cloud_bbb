@@ -43,7 +43,7 @@ const App: React.FC<Props> = () => {
 	const [orderBy, setOrderBy] = useState<SortKey>('name');
 	const [sortOrder, setSortOrder] = useState(SortOrder.ASC);
 
-	const rows = rooms.sort(sortRooms(orderBy, sortOrder)).map(room => <RoomRow room={room} restriction={restriction} key={room.id} roomLife={room.roomLife} updateRoom={updateRoom} deleteRoom={deleteRoom} />);
+	const rows = rooms.sort(sortRooms(orderBy, sortOrder)).map(room => <RoomRow room={room} restriction={restriction} key={room.id} updateRoom={updateRoom} deleteRoom={deleteRoom} />);
 
 	useEffect(() => {
 		Promise.all([
