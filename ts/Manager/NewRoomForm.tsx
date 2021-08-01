@@ -57,8 +57,7 @@ const NewRoomForm: React.FC<Props> = (props) => {
 			</button>
 
 			{error && <p>{error}</p>}
-		</form>
-		
+		</form>		
 	);
 };
 
