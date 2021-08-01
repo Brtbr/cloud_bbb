@@ -63,15 +63,8 @@ class HookController extends Controller {
 		$this->eventDispatcher->dispatch(MeetingEndedEvent::class, new MeetingEndedEvent($room, $recordingmarks));
 
 		
-		if($room->getRoomType() === 'single_use') {
+		if($room->getRoomType() === ROOM::ROOMLIFE_SINGLE_USE) {
 			$this->service->delete($room->getId());
-			$activityEvent = $this->activityManager->generateEvent();
-			$activityEvent->setApp(Application::ID);
-			$activityEvent->setType(Setting::Identifier);
-			$activityEvent->setAffectedUser($room->getUserId());
-			$activityEvent->setSubject("Test", $room->id);
-			$this->activityManager->publish($activityEvent);
-
 		}
 
 	}
