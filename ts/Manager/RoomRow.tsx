@@ -17,6 +17,7 @@ type RecordingsNumberProps = {
 	recordings: null | Recording[];
 	showRecordings: boolean;
 	setShowRecordings: (showRecordings: boolean) => void;
+	room: Room;
 }
 
 const RecordingsNumber: React.FC<RecordingsNumberProps> = ({ recordings, showRecordings, setShowRecordings, room }) => {
