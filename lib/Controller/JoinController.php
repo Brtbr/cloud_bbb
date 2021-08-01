@@ -137,9 +137,10 @@ class JoinController extends Controller {
 				'url' => $joinUrl,
 			], 'guest');
 		} else if($room->getRoomLife() === ROOM::ROOMLIFE_SINGLE_USE) {
-			return new TemplateResponse($this->appName, 'forward', [
-				'room' => "TESTSINGLEUSE",
+			return new TemplateResponse($this->appName, 'forwardSingle', [
+				'room' => $room->name,
 				'url' => $joinUrl,
+				'text' => t('bbb', ''You will be forwarded to the room in the next few seconds.'')
 			], 'guest');
 		}
 		
