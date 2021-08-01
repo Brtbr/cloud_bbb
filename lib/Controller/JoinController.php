@@ -135,7 +135,6 @@ class JoinController extends Controller {
 			'room' => $room->name,
 			'url' => $joinUrl,
 		], 'guest');
-		
 	}
 
 	private function getRoom(): ?Room {
