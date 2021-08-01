@@ -5,7 +5,7 @@ import { SortArrow } from './SortArrow';
 import { api, Room, Restriction, Access, RoomLife } from '../Common/Api';
 import NewRoomForm from './NewRoomForm';
 
-export type SortKey = 'name' | 'welcome' | 'maxParticipants' | 'record' | 'access';
+export type SortKey = 'name' | 'welcome' | 'maxParticipants' | 'record' | 'access' | 'roomLife';
 
 enum SortOrder { DESC = -1, ASC = 1 }
 
@@ -14,6 +14,8 @@ function sortRooms(key: SortKey, orderBy: SortOrder) {
 		switch (key) {
 		case 'name':
 		case 'welcome':
+		case 'roomLife':
+			return a[key].localeCompare(b[key]) * orderBy;
 		case 'access':
 			return a[key].localeCompare(b[key]) * orderBy;
 		case 'maxParticipants':
@@ -158,8 +160,8 @@ const App: React.FC<Props> = () => {
 							{t('bbb', 'Name')} <SortArrow name='name' value={orderBy} direction={sortOrder} />
 						</th>
 						<th />
-						<th className="bbb-shrink">
-							{t('bbb', 'Room Type')}
+						<th onClick={() => onOrderBy('roomLife')} className="bbb-shrink">
+							{t('bbb', 'Room Type')} <SortArrow name='roomLife' value={orderBy} direction={sortOrder} />
 						</th>
 						<th onClick={() => onOrderBy('access')} className="bbb-shrink">
 							{t('bbb', 'Access')} <SortArrow name='access' value={orderBy} direction={sortOrder} />
