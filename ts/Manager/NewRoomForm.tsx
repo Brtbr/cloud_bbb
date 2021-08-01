@@ -53,7 +53,7 @@ const NewRoomForm: React.FC<Props> = (props) => {
 				{t('bbb', 'Create')}
 			</button>
 			<button onClick={addSingleUseRoom}>
-				{t('bbb', 'Create one time meeting')}	
+				{t('bbb', 'Create one-time meeting')}	
 			</button>
 
 			{error && <p>{error}</p>}
