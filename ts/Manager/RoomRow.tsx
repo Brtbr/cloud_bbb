@@ -9,7 +9,6 @@ import { AccessOptions } from '../Common/Translation';
 type Props = {
 	room: Room;
 	restriction?: Restriction;
-	roomLife: string;
 	updateRoom: (room: Room) => Promise<void>;
 	deleteRoom: (id: number) => void;
 }
@@ -219,7 +218,7 @@ const RoomRow: React.FC<Props> = (props) => {
 					{edit('maxParticipants', 'number', {min: minParticipantsLimit, max: maxParticipantsLimit < 0 ? undefined : maxParticipantsLimit})}
 				</td>
 				<td className="record bbb-shrink">
-					<input id={`bbb-record-${room.id}`} type="checkbox" className="checkbox" disabled={!props.restriction?.allowRecording || props.roomLife === 'single_use'} checked={room.record} onChange={(event) => updateRoom('record', event.target.checked)} />
+					<input id={`bbb-record-${room.id}`} type="checkbox" className="checkbox" disabled={!props.restriction?.allowRecording || room.roomLife === RoomLife.SingleUse} checked={room.record} onChange={(event) => updateRoom('record', event.target.checked)} />
 					<label htmlFor={`bbb-record-${room.id}`}></label>
 				</td>
 				<td className="bbb-shrink"><RecordingsNumber recordings={recordings} showRecordings={showRecordings} setShowRecordings={setShowRecordings} /></td>
