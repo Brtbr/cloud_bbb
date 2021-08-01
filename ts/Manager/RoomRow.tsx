@@ -174,9 +174,9 @@ const RoomRow: React.FC<Props> = (props) => {
 	function roomLifeToText(roomLife: string) {
 		switch(roomLife) {
 			case RoomLife.Persistent:
-				return <span title={RoomLifeOptions[roomLife]} />;
+				return <label>{RoomLifeOptions[roomLife]}</label>;
 			case RoomLife.SingleUse:
-				return <span title={RoomLifeOptions[roomLife]} />;
+				return <label>{RoomLifeOptions[roomLife]}</label>;
 		}
 		
 		return <span></span>;
