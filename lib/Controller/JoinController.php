@@ -140,7 +140,7 @@ class JoinController extends Controller {
 			return new TemplateResponse($this->appName, 'forwardSingle', [
 				'room' => $room->name,
 				'url' => $joinUrl,
-				'text' => t('bbb', ''You will be forwarded to the room in the next few seconds.'')
+				'text' => t('bbb', 'You will be forwarded to the room in the next few seconds.')
 			], 'guest');
 		}
 		
