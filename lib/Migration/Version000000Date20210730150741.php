@@ -30,7 +30,7 @@ class Version000000Date20210730150741 extends SimpleMigrationStep {
 				$table->addColumn('room_life', 'string', [
 					'notnull' => false,
 					'length' => 64,
-					'default' => 'persistant'
+					'default' => 'persistent'
 				]);
 			}
 		
