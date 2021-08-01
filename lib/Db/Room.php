@@ -57,7 +57,6 @@ class Room extends Entity implements JsonSerializable {
 	public const ROOMLIFE_PERSISTENT = 'persistent';
 	public const ROOMLIFE_SINGLE_USE = 'single_use';
 
-
 	public $uid;
 	public $name;
 	public $attendeePassword;
