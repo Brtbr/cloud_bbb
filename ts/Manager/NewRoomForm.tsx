@@ -9,13 +9,12 @@ const NewRoomForm: React.FC<Props> = (props) => {
 	const [name, setName] = useState<string>('');
 	const [processing, setProcessing] = useState<boolean>(false);
 	const [error, setError] = useState<string>('');
-	const [createPersistent, setCreatePersistent] = useState<string>('');
 
 	function addRoom(ev: React.FormEvent) {
 		ev.preventDefault();
 
 		setProcessing(true);
-		setError(''); 
+		setError('');
 
 		props.addRoom(name).then(() => {
 			setName('');
@@ -54,7 +53,7 @@ const NewRoomForm: React.FC<Props> = (props) => {
 				{t('bbb', 'Create')}
 			</button>
 			<button onClick={addSingleUseRoom}>
-				{t('bbb', 'Create single use room')}	
+				{t('bbb', 'Create one time meeting')}	
 			</button>
 
 			{error && <p>{error}</p>}

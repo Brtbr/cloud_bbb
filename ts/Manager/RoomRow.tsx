@@ -171,17 +171,6 @@ const RoomRow: React.FC<Props> = (props) => {
 		return <span></span>;
 	}
 
-	function roomLifeToText(roomLife: string) {
-		switch(roomLife) {
-			case RoomLife.Persistent:
-				return <label>{RoomLifeOptions[roomLife]}</label>;
-			case RoomLife.SingleUse:
-				return <label>{RoomLifeOptions[roomLife]}</label>;
-		}
-		
-		return <span></span>;
-	}
-
 	function edit(field: string, type: 'text' | 'number' = 'text', options?) {
 		return <EditableValue field={field} value={room[field]} setValue={updateRoom} type={type} options={options} />;
 	}
@@ -223,7 +212,7 @@ const RoomRow: React.FC<Props> = (props) => {
 					{(room.userId === OC.currentUser && room.shared) && <span className="icon icon-shared icon-visible"/>}
 				</td>
 				<td className="bbb-shrink">
-					{roomLifeToText(room.roomLife)}
+					<label>{RoomLifeOptions[room.roomLife]}</label>
 				</td>
 				<td>
 					{accessToIcon(room.access)}
