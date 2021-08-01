@@ -19,9 +19,13 @@ type RecordingsNumberProps = {
 	setShowRecordings: (showRecordings: boolean) => void;
 }
 
-const RecordingsNumber: React.FC<RecordingsNumberProps> = ({ recordings, showRecordings, setShowRecordings }) => {
+const RecordingsNumber: React.FC<RecordingsNumberProps> = ({ recordings, showRecordings, setShowRecordings, room }) => {
 	if (recordings === null) {
 		return <span className="icon icon-loading-small icon-visible"></span>;
+	}
+
+	if(room.roomLife === RoomLife.SingleUse) {
+		return <input>n.a.</input>
 	}
 
 	if (recordings.length > 0) {
@@ -224,7 +228,7 @@ const RoomRow: React.FC<Props> = (props) => {
 					<input id={`bbb-record-${room.id}`} type="checkbox" className="checkbox" disabled={!props.restriction?.allowRecording || room.roomLife === RoomLife.SingleUse} checked={room.record} onChange={(event) => updateRoom('record', event.target.checked)} />
 					<label htmlFor={`bbb-record-${room.id}`}></label>
 				</td>
-				<td className="bbb-shrink"><RecordingsNumber recordings={recordings} showRecordings={showRecordings} setShowRecordings={setShowRecordings} /></td>
+				<td className="bbb-shrink"><RecordingsNumber recordings={recordings} showRecordings={showRecordings} setShowRecordings={setShowRecordings} room={room} /></td>
 				<td className="edit icon-col">
 					<EditRoom room={props.room} restriction={props.restriction} updateProperty={updateRoom} />
 				</td>
