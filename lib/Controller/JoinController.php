@@ -131,17 +131,10 @@ class JoinController extends Controller {
 
 		\OCP\Util::addHeader('meta', ['http-equiv' => 'refresh', 'content' => '3;url='.$joinUrl]);
 
-		if($room->getRoomLife() === ROOM::ROOMLIFE_PERSISTENT) {
-			return new TemplateResponse($this->appName, 'forward', [
-				'room' => $room->name,
-				'url' => $joinUrl,
-			], 'guest');
-		} else if($room->getRoomLife() === ROOM::ROOMLIFE_SINGLE_USE) {
-			return new TemplateResponse($this->appName, 'forwardSingle', [
-				'room' => $room->name,
-				'url' => $joinUrl,
-			], 'guest');
-		}
+		return new TemplateResponse($this->appName, 'forward', [
+			'room' => $room->name,
+			'url' => $joinUrl,
+		], 'guest');
 		
 	}
 

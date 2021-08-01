@@ -23,9 +23,6 @@ class HookController extends Controller {
 	/** @var IEventDispatcher */
 	private $eventDispatcher;
 
-	/** @var IActivityManager */
-	private $activityManager;
-
 	public function __construct(
 		string $appName,
 		IRequest $request,

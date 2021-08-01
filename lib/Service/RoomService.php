@@ -95,7 +95,7 @@ class RoomService {
 			$room->setPassword($this->humanReadableRandom(8));
 		}
 
-		if ($roomLife === 'single_use') {
+		if ($roomLife === Room::ROOMLIFE_SINGLE_USE) {
 			$room->setRequireModerator(true);
 		}
 
