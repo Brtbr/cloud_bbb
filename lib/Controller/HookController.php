@@ -63,7 +63,7 @@ class HookController extends Controller {
 		$this->eventDispatcher->dispatch(MeetingEndedEvent::class, new MeetingEndedEvent($room, $recordingmarks));
 
 		
-		if($room->getRoomType() === ROOM::ROOMLIFE_SINGLE_USE) {
+		if($room->getRoomLife() === ROOM::ROOMLIFE_SINGLE_USE) {
 			$this->service->delete($room->getId());
 		}
 
