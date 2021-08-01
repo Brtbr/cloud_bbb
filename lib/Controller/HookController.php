@@ -55,15 +55,13 @@ class HookController extends Controller {
 	 */
 	public function meetingEnded($recordingmarks = false): void {
 		$recordingmarks = \boolval($recordingmarks);
-
 		$room = $this->getRoom();
+		
 		$this->eventDispatcher->dispatch(MeetingEndedEvent::class, new MeetingEndedEvent($room, $recordingmarks));
-
 		
 		if($room->getRoomLife() === ROOM::ROOMLIFE_SINGLE_USE) {
 			$this->service->delete($room->getId());
 		}
-
 	}
 
 	/**
