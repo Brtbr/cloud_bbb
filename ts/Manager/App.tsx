@@ -158,6 +158,9 @@ const App: React.FC<Props> = () => {
 							{t('bbb', 'Name')} <SortArrow name='name' value={orderBy} direction={sortOrder} />
 						</th>
 						<th />
+						<th className="bbb-shrink">
+							{t('bbb', 'Room Type')}
+						</th>
 						<th onClick={() => onOrderBy('access')} className="bbb-shrink">
 							{t('bbb', 'Access')} <SortArrow name='access' value={orderBy} direction={sortOrder} />
 						</th>

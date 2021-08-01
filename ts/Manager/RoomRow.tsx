@@ -211,6 +211,9 @@ const RoomRow: React.FC<Props> = (props) => {
 					{room.userId !== OC.currentUser && <img src={avatarUrl} alt="Avatar" className="bbb-avatar" />}
 					{(room.userId === OC.currentUser && room.shared) && <span className="icon icon-shared icon-visible"/>}
 				</td>
+				<td className="bbb-shrink">
+					{room.roomLife}
+				</td>
 				<td>
 					{accessToIcon(room.access)}
 				</td>
