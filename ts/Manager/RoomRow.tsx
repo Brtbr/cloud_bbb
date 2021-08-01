@@ -4,7 +4,7 @@ import { api, Recording, Room, Restriction, Access, RoomLife } from '../Common/A
 import EditRoom from './EditRoom';
 import RecordingRow from './RecordingRow';
 import EditableValue from './EditableValue';
-import { AccessOptions } from '../Common/Translation';
+import { AccessOptions, RoomLifeOptions } from '../Common/Translation';
 
 type Props = {
 	room: Room;
@@ -171,6 +171,17 @@ const RoomRow: React.FC<Props> = (props) => {
 		return <span></span>;
 	}
 
+	function roomLifeToText(roomLife: string) {
+		switch(roomLife) {
+			case RoomLife.Persistent:
+				return <span title={RoomLifeOptions[roomLife]} />;
+			case RoomLife.SingleUse:
+				return <span title={RoomLifeOptions[roomLife]} />;
+		}
+		
+		return <span></span>;
+	}
+
 	function edit(field: string, type: 'text' | 'number' = 'text', options?) {
 		return <EditableValue field={field} value={room[field]} setValue={updateRoom} type={type} options={options} />;
 	}
@@ -212,7 +223,7 @@ const RoomRow: React.FC<Props> = (props) => {
 					{(room.userId === OC.currentUser && room.shared) && <span className="icon icon-shared icon-visible"/>}
 				</td>
 				<td className="bbb-shrink">
-					{room.roomLife}
+					{roomLifeToText(room.roomLife)}
 				</td>
 				<td>
 					{accessToIcon(room.access)}
