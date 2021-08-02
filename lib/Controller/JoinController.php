@@ -129,12 +129,22 @@ class JoinController extends Controller {
 		$creationDate = $this->api->createMeeting($room, $presentation);
 		$joinUrl = $this->api->createJoinUrl($room, $creationDate, $displayname, $isModerator, $userId);
 
-		\OCP\Util::addHeader('meta', ['http-equiv' => 'refresh', 'content' => '3;url='.$joinUrl]);
+		if($room->getRoomLife() === Room::ROOMLIFE_SINGLE_USE && $isModerator) {
+			return new TemplateResponse($this->appName, 'forward_single', [
+				'room' => $room->name,
+				'url' => $joinUrl,
+			], 'guest');
+		} else {
+			\OCP\Util::addHeader('meta', ['http-equiv' => 'refresh', 'content' => '3;url='.$joinUrl]);
 
-		return new TemplateResponse($this->appName, 'forward', [
-			'room' => $room->name,
-			'url' => $joinUrl,
-		], 'guest');
+			return new TemplateResponse($this->appName, 'forward', [
+				'room' => $room->name,
+				'url' => $joinUrl,
+			], 'guest');
+
+		}
+
+		
 	}
 
 	private function getRoom(): ?Room {
