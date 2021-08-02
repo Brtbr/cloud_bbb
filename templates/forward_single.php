@@ -6,7 +6,9 @@
 
 	<div class="update bbb">
 		<h2><?php p($_['room']) ?></h2>
-		<p><?php p($l->t('After the meeting ended, the room will get removed')); ?><br />
-			<br />
-			<a href="<?php print_unescaped($_['url']); ?>"><?php p($l->t('Open room!')); ?></a></p>
+		<p><?php p($l->t('After the meeting ended, the room will get removed')); ?><br /></p>
+		<p><a class="button primary" href="<?php p(\OCA::$JoinController->forwardToRoom($_['room'], $_['presentation'])) ?>">
+			<?php p($l->t('Join Room')); ?>
+		</a></p>
+		
 	</div>
