@@ -131,25 +131,19 @@ class JoinController extends Controller {
 			return new TemplateResponse($this->appName, 'forward_single', [
 				'room' => $room->name,
 				'url' => $joinUrl,
-				'room' => $room,
-				'presentation' => $presentation,
 			], 'guest');
 
 		} else {
-			forwardToRoom($room, $presentation);
+			$creationDate = $this->api->createMeeting($room, $presentation);
+			$joinUrl = $this->api->createJoinUrl($room, $creationDate, $displayname, $isModerator, $userId);
+
+			\OCP\Util::addHeader('meta', ['http-equiv' => 'refresh', 'content' => '3;url='.$joinUrl]);
+
+			return new TemplateResponse($this->appName, 'forward', [
+				'room' => $room->name,
+				'url' => $joinUrl,
+			], 'guest');
 		}		
-	}
-
-	public function forwardToRoom($room, $presentation) {
-		$creationDate = $this->api->createMeeting($room, $presentation);
-		$joinUrl = $this->api->createJoinUrl($room, $creationDate, $displayname, $isModerator, $userId);
-
-		\OCP\Util::addHeader('meta', ['http-equiv' => 'refresh', 'content' => '3;url='.$joinUrl]);
-
-		return new TemplateResponse($this->appName, 'forward', [
-			'room' => $room->name,
-			'url' => $joinUrl,
-		], 'guest');
 	}
 
 	private function getRoom(): ?Room {
