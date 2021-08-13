@@ -27,7 +27,7 @@ const RecordingsNumber: React.FC<RecordingsNumberProps> = ({ recordings, showRec
 	if (recordings.length > 0) {
 		return (
 			<a onClick={() => setShowRecordings(!showRecordings)}>
-				{recordings.length} <span className='sort_arrow'>{showRecordings ? '▼' : '▲'}</span>
+				<span className='sort_arrow'>{showRecordings ? '▾' : '▸'}</span> {recordings.length}
 			</a>
 		);
 	}
@@ -238,7 +238,7 @@ const RoomRow: React.FC<Props> = (props) => {
 				<td colSpan={11}>
 					<table>
 						<tbody>
-							{recordings?.map(recording => <RecordingRow key={recording.id} recording={recording} deleteRecording={deleteRecording} storeRecording={storeRecording} />)}
+							{recordings?.sort((r1, r2) => r1.startTime - r2.startTime).map(recording => <RecordingRow key={recording.id} recording={recording} deleteRecording={deleteRecording} storeRecording={storeRecording} />)}
 						</tbody>
 					</table>
 				</td>
