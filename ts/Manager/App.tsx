@@ -90,22 +90,6 @@ const App: React.FC<Props> = () => {
 		});
 	}
 
-	function loadHiddenRooms() {
-		return api.getRooms().then(rooms => {
-			for(var i = 0; i < rooms.length; i++) {
-				var roomObj = rooms[i];
-				if(roomObj.hideRoom === true) {
-					rooms[i] = roomObj;
-				}
-			}
-			setRooms(rooms);
-		}).catch((err) => {
-			console.warn('Could not load rooms', err);
-
-			throw err;
-		});
-	}
-
 	function onOrderBy(key: SortKey) {
 		if (orderBy === key) {
 			setSortOrder(sortOrder === SortOrder.ASC ? SortOrder.DESC : SortOrder.ASC);
