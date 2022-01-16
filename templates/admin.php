@@ -36,6 +36,15 @@ script('bbb', 'restrictions');
             <input type="checkbox" name="join.mediaCheck" id="bbb-join-mediaCheck" class="checkbox bbb-setting" value="1" <?php p($_['join.mediaCheck']); ?> />
             <label for="bbb-join-mediaCheck"><?php p($l->t('Perform media check before usage')); ?></label>
         </p>
+        
+        <p>
+            <select name="access" id="bbb-join-access">
+                <option value="Global"></option>
+                <option value="intern"></option>
+                <option value="test"></option>
+            </select>
+            <label for="bbb-join-access"><?php p($l->t('Perform media check before usage')); ?></label>
+        </p>
 
         <h3><?php p($l->t('Community')); ?></h3>
         <p><?php p($l->t('Are you enjoying this app? Give something back to the open source community.')); ?> <a href="https://github.com/sualko/cloud_bbb/blob/master/.github/contributing.md" target="_blank" rel="noopener noreferrer" class="button"><span class="heart"></span> <?php p($l->t('Checkout the contributor guide')); ?></a></p>
