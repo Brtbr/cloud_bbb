@@ -38,10 +38,10 @@ script('bbb', 'restrictions');
         </p>
         
         <p>
-            <select name="access" id="bbb-join-access">
-                <option value="Global"></option>
-                <option value="intern"></option>
-                <option value="test"></option>
+            <select name="join.access" id="bbb-join-access">
+                <option value="Global">Global</option>
+                <option value="intern">intern</option>
+                <option value="test">test</option>
             </select>
             <label for="bbb-join-access"><?php p($l->t('Perform media check before usage')); ?></label>
         </p>
