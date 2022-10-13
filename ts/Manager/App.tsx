@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.scss';
 import RoomRow from './RoomRow';
+import SingleUseRoomRow from './SingleUseRoomRow'
 import { SortArrow } from './SortArrow';
 import { api, Room, Restriction, Access } from '../Common/Api';
 import NewRoomForm from './NewRoomForm';
@@ -44,6 +45,7 @@ const App: React.FC<Props> = () => {
 	const [sortOrder, setSortOrder] = useState(SortOrder.ASC);
 
 	const rows = rooms.sort(sortRooms(orderBy, sortOrder)).map(room => <RoomRow room={room} restriction={restriction} key={room.id} updateRoom={updateRoom} deleteRoom={deleteRoom} cloneRoom={cloneRoom}/>);
+	const singleRoomRows = rooms.sort(sortRooms(orderBy, sortOrder)).map(room => <SingleUseRoomRow room={room} restriction={restriction} key={room.id} updateRoom={updateRoom} deleteRoom={deleteRoom} cloneRoom={cloneRoom}/>)
 
 	useEffect(() => {
 		Promise.all([
@@ -68,7 +70,7 @@ const App: React.FC<Props> = () => {
 
 	function loadRooms() {
 		return api.getRooms().then(rooms => {
-			setRooms(rooms);
+			setRooms(rooms)
 		}).catch((err) => {
 			console.warn('Could not load rooms', err);
 
@@ -179,7 +181,10 @@ const App: React.FC<Props> = () => {
 					</tr>
 				</thead>
 				<tbody>
+					{<h3>Reguläre Meetings</h3>}
 					{rows}
+					{<h3>Einmalige Meetings</h3>}
+					{singleRoomRows}
 				</tbody>
 				<tfoot>
 					<tr>
