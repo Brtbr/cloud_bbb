@@ -19,12 +19,12 @@ use \OCA\BigBlueButton\Search\Provider;
 use \OCP\AppFramework\App;
 use \OCP\AppFramework\QueryException;
 use \OCP\AppFramework\Bootstrap\IBootContext;
+use \OCP\AppFramework\Bootstrap\IBootstrap;
+use \OCP\AppFramework\Bootstrap\IRegistrationContext;
 use \OCP\EventDispatcher\IEventDispatcher;
 use \OCP\IConfig;
 use \OCP\Settings\IManager as ISettingsManager;
 use \OCP\User\Events\UserDeletedEvent;
-use \OCP\AppFramework\Bootstrap\IBootstrap;
-use \OCP\AppFramework\Bootstrap\IRegistrationContext;
 use \OCP\Util;
 
 if ((@include_once __DIR__ . '/../../vendor/autoload.php') === false) {
