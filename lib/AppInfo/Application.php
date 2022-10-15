@@ -60,6 +60,12 @@ class Application extends App implements IBootstrap {
 		}
 	}
 
+	public function boot(IBootContext $context): void {}
+
+	public function register(IRegistrationContext $context): void {
+		$context->registerSearchProvider(Provider::class);
+	}
+
 	private function registerAsPersonalSetting(): void {
 		try {
 			/** @var ISettingsManager */
@@ -106,10 +112,4 @@ class Application extends App implements IBootstrap {
 
 		$dispatcher->addServiceListener(UserDeletedEvent::class, UserDeletedListener::class);
 	}
-
-	public function register(IRegistrationContext $context): void {
-		$context->registerSearchProvider(Provider::class);
-	}
-
-	public function boot(IBootContext $context): void {}
 }

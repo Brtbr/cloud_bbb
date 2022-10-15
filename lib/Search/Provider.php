@@ -91,7 +91,7 @@ class Provider implements IProvider {
 					$room->getName(),
 					$this->getAccess($room->getAccess()),
 					$this->urlGenerator->linkToRoute('bbb.page.index'),
-					$this->urlGenerator->imagePath('bbb', 'app-dark.svg')
+					$this->urlGenerator->imagePath('bbb', 'app-grey.svg')
 				)
 			];
 		}, $rooms);

@@ -91,7 +91,7 @@ class RoomService {
 	 * @return array<Room>
 	 */
 	public function search(IUser $userId, ISearchQuery $query): array {
-		return $this->mapper->search($userId->getUID(), $query);
+		return $this->mapper->search($userId->getUID(), $query->getTerm());
 	}
 
 	public function create(string $name, string $welcome, int $maxParticipants, bool $record, string $access, string $userId): \OCP\AppFramework\Db\Entity {
