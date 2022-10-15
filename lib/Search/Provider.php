@@ -46,7 +46,34 @@ class Provider implements IProvider {
 	}
 
 	public function getOrder(string $route, array $routeParameters): int {
-		return 20;
+		if (strpos($route, Application::ID . '.') === 0) {
+            return -1;
+        }
+		return Application::ORDER;
+	}
+
+	private function getAccess(string $access): string {
+		switch ($access) {
+			case 'public': 
+				$translatedAccess = $this->l10n->t('Public');
+				break;
+			case 'password':
+				$translatedAccess = $this->l10n->t('Internal + Password protection for guests');
+				break;
+			case 'waiting_room':
+				$translatedAccess = $this->l10n->t('Internal + Waiting room for guests');
+				break;
+			case 'waiting_room_all':
+				$translatedAccess = $this->l10n->t('Waiting room for all users');
+				break;
+			case 'internal':
+				$translatedAccess = $this->l10n->t('Internal');
+				break;
+			case 'internal_restricted':
+				$translatedAccess = $this->l10n->t('Internal restricted');
+				break;
+		}
+		return $translatedAccess;
 	}
 
     public function search(IUser $user, ISearchQuery $query): SearchResult {
@@ -62,7 +89,7 @@ class Provider implements IProvider {
 				'entry' => new SearchResultEntry(
 					'',
 					$room->getName(),
-					$this->l10n->t('Public'),
+					$this->getAccess($room->getAccess()),
 					$this->urlGenerator->linkToRoute('bbb.page.index'),
 					$this->urlGenerator->imagePath('bbb', 'app-dark.svg')
 				)
@@ -77,6 +104,5 @@ class Provider implements IProvider {
 			'BBB',
             $resultEntries
 		);
-	}
-	
+	}	
 }

@@ -33,6 +33,7 @@ if ((@include_once __DIR__ . '/../../vendor/autoload.php') === false) {
 
 class Application extends App implements IBootstrap {
 	public const ID = 'bbb';
+	public const ORDER = 80;
 
 	public function __construct(array $urlParams = []) {
 		parent::__construct(self::ID, $urlParams);
@@ -84,7 +85,7 @@ class Application extends App implements IBootstrap {
 		$server->getNavigationManager()->add(function () use ($server, $name) {
 			return [
 				'id' => self::ID,
-				'order' => 80,
+				'order' => self::ORDER,
 				'href' => $server->getURLGenerator()->linkToRoute('bbb.page.index'),
 				'icon' => $server->getURLGenerator()->imagePath('bbb', 'app.svg'),
 				'name' => $name,
