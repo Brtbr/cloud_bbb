@@ -23,15 +23,10 @@ class Provider implements IProvider {
 	/** @var IL10N */
 	private $l10n;
 
-	/** @var IDateTimeFormatter */
-	private $dateTimeFormatter;
-
 	/** @var IURLGenerator */
 	private $urlGenerator;
 
-	public function __construct(RoomService $service,
-								IL10N $l10n,
-								IURLGenerator $urlGenerator) {
+	public function __construct(RoomService $service, IL10N $l10n, IURLGenerator $urlGenerator) {
 		$this->service = $service;
 		$this->l10n = $l10n;
 		$this->urlGenerator = $urlGenerator;
@@ -77,7 +72,6 @@ class Provider implements IProvider {
 	}
 
     public function search(IUser $user, ISearchQuery $query): SearchResult {
-		$cursor = $query->getCursor();
 		$rooms = $this->service->search(
 			$user,
 			$query
@@ -85,8 +79,7 @@ class Provider implements IProvider {
 
 		$results = array_map(function(Room $room) {
 			return [
-				'object' => $room,
-				'entry' => new SearchResultEntry(
+				new SearchResultEntry(
 					'',
 					$room->getName(),
 					$this->getAccess($room->getAccess()),
@@ -95,14 +88,10 @@ class Provider implements IProvider {
 				)
 			];
 		}, $rooms);
-
-		$resultEntries = array_map(function(array $result) {
-			return $result['entry'];
-		}, $results);
         
         return SearchResult::complete(
 			'BBB',
-            $resultEntries
+            $results
 		);
 	}	
 }
