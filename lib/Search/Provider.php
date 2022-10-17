@@ -79,19 +79,24 @@ class Provider implements IProvider {
 
 		$results = array_map(function(Room $room) {
 			return [
-				new SearchResultEntry(
+				'object' => $room,
+				'entry' => new SearchResultEntry(
 					'',
 					$room->getName(),
 					$this->getAccess($room->getAccess()),
-					$this->urlGenerator->linkToRoute('bbb.page.index'),
+					$this->urlGenerator->linkToRouteAbsolute('bbb.page.index'),
 					$this->urlGenerator->imagePath('bbb', 'app-grey.svg')
 				)
 			];
 		}, $rooms);
+
+		$resultEntries = array_map(function(array $result) {
+			return $result['entry'];
+		}, $results);
         
         return SearchResult::complete(
 			'BBB',
-            $results
+            $resultEntries
 		);
 	}	
 }
