@@ -2,6 +2,7 @@
 
 namespace OCA\BigBlueButton\AppInfo;
 
+use \OCA\BigBlueButton\Dashboard\BBBWidget;
 use \OCA\BigBlueButton\Activity\MeetingListener;
 use \OCA\BigBlueButton\Activity\RoomListener;
 use \OCA\BigBlueButton\Activity\RoomShareListener;
@@ -15,18 +16,22 @@ use \OCA\BigBlueButton\Event\RoomShareDeletedEvent;
 use \OCA\BigBlueButton\Listener\UserDeletedListener;
 use \OCA\BigBlueButton\Middleware\HookMiddleware;
 use \OCA\BigBlueButton\Middleware\JoinMiddleware;
+use \OCP\AppFramework\Bootstrap\IRegistrationContext;
+use \OCP\AppFramework\Bootstrap\IBootContext;
+use \OCP\AppFramework\Bootstrap\IBootstrap;
 use \OCP\AppFramework\App;
 use \OCP\AppFramework\QueryException;
 use \OCP\EventDispatcher\IEventDispatcher;
 use \OCP\IConfig;
 use \OCP\Settings\IManager as ISettingsManager;
 use \OCP\User\Events\UserDeletedEvent;
+use OCP\Util;
 
 if ((@include_once __DIR__ . '/../../vendor/autoload.php') === false) {
 	throw new \Exception('Cannot include autoload. Did you run install dependencies using composer?');
 }
 
-class Application extends App {
+class Application extends App implements IBootstrap{
 	public const ID = 'bbb';
 
 	public function __construct(array $urlParams = []) {
@@ -43,6 +48,8 @@ class Application extends App {
 
 		$config = $container->query(IConfig::class);
 
+		/**Util::addScript('bbb', 'filelist');*/
+
 		if ($config->getAppValue(self::ID, 'app.navigation') === 'true') {
 			$name = $config->getAppValue(self::ID, 'app.navigation.name', 'BBB');
 
@@ -50,6 +57,13 @@ class Application extends App {
 		} else {
 			$this->registerAsPersonalSetting();
 		}
+	}
+
+	public function register(IRegistrationContext $context): void {
+		$context->registerDashboardWidget(BBBWidget::class);
+	}
+
+	public function boot(IBootContext $context): void {
 	}
 
 	private function registerAsPersonalSetting(): void {

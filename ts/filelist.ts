@@ -4,6 +4,7 @@ import { showSuccess, showWarning, showError } from '@nextcloud/dialogs';
 import '@nextcloud/dialogs/styles/toast';
 import { api } from './Common/Api';
 import './filelist.scss';
+import { Offcanvas } from 'bootstrap';
 
 type OC_Dialogs_Message = (content: string, title: string, dialogType: 'notice' | 'alert' | 'warn' | 'none', buttons?: number, callback?: () => void, modal?: boolean, allowHtml?: boolean) => Promise<void>;
 type ExtendedDialogs = typeof OC.dialogs & { message: OC_Dialogs_Message };
