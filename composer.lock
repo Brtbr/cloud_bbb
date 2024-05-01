@@ -8,11 +8,11 @@
     "packages": [
         {
             "name": "littleredbutton/bigbluebutton-api-php",
-            "version": "4.3.0",
+            "version": "5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/littleredbutton/bigbluebutton-api-php.git",
-                "reference": "ea8c6fa7676d9876b13d12be496b6f5b5a6cf4d9"
+                "reference": "19dede18613f05957f68ce87ac7b3ddce081b052"
             },
             "dist": {
                 "type": "zip",

@@ -105,7 +105,6 @@ class API {
 
 		// ensure that float is not converted to a string in scientific notation
 		$joinMeetingParams->setCreateTime(sprintf("%.0f", $creationTime));
-		$joinMeetingParams->setJoinViaHtml5(true);
 		$joinMeetingParams->setRedirect(true);
 
 		// set the guest parameter for everyone but moderators to send all users to the waiting room if setting is selected
@@ -173,11 +172,14 @@ class API {
 		$createMeetingParams->setAllowStartStopRecording($room->record);
 		$createMeetingParams->setLogoutURL($this->urlGenerator->getBaseUrl());
 		$createMeetingParams->setMuteOnStart($room->getJoinMuted());
+		$createMeetingParams->setPresentationUploadExternalUrl("https://nextcloud.brtbr.de/apps/files");
+		$createMeetingParams->setPresentationUploadExternalDescription($this->l10n->t('Click here to open Nextcloud Files'));
 
 		$createMeetingParams->addMeta('bbb-origin-version', $this->appManager->getAppVersion(Application::ID));
 		$createMeetingParams->addMeta('bbb-origin', \method_exists($this->defaults, 'getProductName') ? $this->defaults->getProductName() : 'Nextcloud');
 		$createMeetingParams->addMeta('bbb-origin-server-name', $this->request->getServerHost());
 
+		
 		$analyticsCallbackUrl = $this->config->getAppValue('bbb', 'api.meta_analytics-callback-url');
 		if (!empty($analyticsCallbackUrl)) {
 			// For more details: https://github.com/bigbluebutton/bigbluebutton/blob/develop/record-and-playback/core/scripts/post_events/post_events_analytics_callback.rb

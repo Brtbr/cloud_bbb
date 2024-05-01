@@ -138,6 +138,7 @@ OC.L10N.register(
     "Please select the room in which you like to use the file \"{filename}\"." : "Bitte den Raum auswählen, in dem Sie die Datei \"{filename}\" verwenden möchten.",
     "No rooms available!" : "Keine Räume verfügbar!",
     "Send to BBB" : "An BBB senden",
-    "_This room is not open yet. We will try it again in %n second. Please wait._::_This room is not open yet. We will try it again in %n seconds. Please wait._" : ["Dieser Raum ist noch geschlossen. Neuer Versuch in %n Sekunde. Bitte warten.","Dieser Raum ist noch geschlossen. Neuer Versuch in %n Sekunden. Bitte warten."]
+    "_This room is not open yet. We will try it again in %n second. Please wait._::_This room is not open yet. We will try it again in %n seconds. Please wait._" : ["Dieser Raum ist noch geschlossen. Neuer Versuch in %n Sekunde. Bitte warten.","Dieser Raum ist noch geschlossen. Neuer Versuch in %n Sekunden. Bitte warten."],
+    "Click here to open Nextcloud Files" : "Hier klicken um Nextcloud Files zu öffnen"
 },
 "nplurals=2; plural=(n != 1);");
