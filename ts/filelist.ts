@@ -4,6 +4,7 @@ import { showSuccess, showWarning, showError } from '@nextcloud/dialogs';
 import '@nextcloud/dialogs/styles/toast';
 import { api } from './Common/Api';
 import './filelist.scss';
+import { registerFileAction, FileAction } from '@nextcloud/files'
 
 type OC_Dialogs_Message = (content: string, title: string, dialogType: 'notice' | 'alert' | 'warn' | 'none', buttons?: number, callback?: () => void, modal?: boolean, allowHtml?: boolean) => Promise<void>;
 type ExtendedDialogs = typeof OC.dialogs & { message: OC_Dialogs_Message };
@@ -121,6 +122,27 @@ async function openDialog(fileId: number, filename: string) {
 	}
 }
 
+const openBBB = new FileAction({
+	id: 'bbb',
+
+	iconSvgInline: () => {
+		return OC.imagePath('bbb', 'app-dark.svg')
+	},
+
+	displayName: () => {
+		return t('bbb', 'Send to BBB')
+	},
+
+	enabled: () => {
+		return true
+	},
+
+	exec: (file) => {
+		openDialog(context.fileInfoModel.id, file)
+		return
+	},
+})
+
 function registerFileAction(fileActions: any, mime: MimeTypes) {
 	fileActions.registerAction({
 		name: 'bbb',
@@ -150,4 +172,5 @@ const BBBFileListPlugin = {
 	},
 };
 
-OC.Plugins.register('OCA.Files.FileList', BBBFileListPlugin);
+//OC.Plugins.register('OCA.Files.FileList', BBBFileListPlugin);
+registerFileAction(openBBB)
